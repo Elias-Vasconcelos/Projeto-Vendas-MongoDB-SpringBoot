@@ -25,6 +25,18 @@ import lombok.Setter;
 @Schema(name="Clientes", description ="Clientes")
 public class Clientes {
 
+    public Clientes(String id, String nome, Integer cpf, String email, Integer tel, String end, Integer numero, String cidade, String estado) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.tel = tel;
+        this.end = end;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
     @Id
     @NotNull
     @Schema(description = "Identificador unico de Clintes")
@@ -38,16 +50,37 @@ public class Clientes {
     @NotNull
     @Indexed(unique = true, background = true)
     @Schema(description="Cpf", nullable = false)
-    private Long cpf;
+    private Integer cpf;
 
     @NotNull
     @Schema(description="Telefone", nullable = false)
-    private Long tel;
+    @Indexed(unique = true, background = true)
+    private Integer tel;
 
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Indexed(unique = true, background = true)
+    @Schema(description="Email", minLength = 1, maxLength=50, nullable = false)
+    @Pattern(regexp = ".+@.+\\..+", message = "Email inválido")
     private String email;
 
     @NotNull
     @Size(min = 1, max = 50)
     @Schema(description="Endereço", minLength = 1, maxLength=50, nullable = false)
     private String end;
+
+    @NotNull
+    @Schema(description="Numero residencial", nullable = false)
+    private Integer numero;
+
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Schema(description="Cidade", minLength = 1, maxLength=50, nullable = false)
+    private String cidade;
+
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Schema(description="Estado", minLength = 1, maxLength=50, nullable = false)
+    private String estado;
+
 }
