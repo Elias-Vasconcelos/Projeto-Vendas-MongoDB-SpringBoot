@@ -1,4 +1,4 @@
-package Elias.com.br.Clientes.UseeCase;
+package Elias.com.br.Clientes.UseCase;
 
 import Elias.com.br.Clientes.Domain.Clientes;
 import Elias.com.br.Clientes.repository.IClientesRepository;
@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class BuscarClienteCase {
+
 
     IClientesRepository clientesRepository;
 

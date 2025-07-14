@@ -4,6 +4,10 @@ import Elias.com.br.Clientes.Domain.Clientes;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface ClientesRepository extends MongoRepository<Clientes, String> {
+public interface IClientesRepository extends MongoRepository<Clientes, String> {
+
+    Optional<Clientes> findByCpf(Integer cpf);
 }

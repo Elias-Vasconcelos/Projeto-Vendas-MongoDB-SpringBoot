@@ -25,17 +25,6 @@ import lombok.Setter;
 @Schema(name="Clientes", description ="Clientes")
 public class Clientes {
 
-    public Clientes(String id, String nome, Integer cpf, String email, Integer tel, String end, Integer numero, String cidade, String estado) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.tel = tel;
-        this.end = end;
-        this.numero = numero;
-        this.cidade = cidade;
-        this.estado = estado;
-    }
 
     @Id
     @NotNull
