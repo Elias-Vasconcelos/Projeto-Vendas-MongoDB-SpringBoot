@@ -5,7 +5,10 @@ import Elias.com.br.Produtos.Domain.Produtos;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface IProdutosRpository extends MongoRepository<Produtos, String> {
+import java.util.Optional;
 
+@Repository
+public interface IProdutosRepository extends MongoRepository<Produtos, String> {
+
+    Optional<Produtos> findByCodigo(String codigo);
 }

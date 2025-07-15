@@ -16,11 +16,11 @@ public class OpenAPIConfig {
     public OpenAPI customOpenAPI(@Value("${application-version}") String appVersion) {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Serviço de clientes")
+                        .title("Serviço de Produtos")
                         .version(appVersion)
-                        .description("Serviço para gerenciamento de clientes")
+                        .description("Serviço para gerenciamento de Produtos")
                         .termsOfService("http://swagger.io/terms/")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org"))
-                        .contact(new Contact().name("Rodrigo Pires").email("rodrigo@rodrigo.com")));
+                        );
     }
 }
