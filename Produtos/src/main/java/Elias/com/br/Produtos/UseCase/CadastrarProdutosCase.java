@@ -1,0 +1,4 @@
+package Elias.com.br.Produtos.UseCase;
+
+public class CadastrarProdutosCase {
+}
