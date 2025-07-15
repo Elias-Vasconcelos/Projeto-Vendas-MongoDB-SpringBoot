@@ -29,7 +29,6 @@ import java.math.BigDecimal;
 @Schema(name="Produtos", description ="Produtos")
 public class Produtos {
 
-
     @Id
     private String id;
 
@@ -46,6 +45,7 @@ public class Produtos {
     @Size(min = 1, max = 50)
     private String descricao;
 
+    @NotNull
     private BigDecimal valor;
 
 }
