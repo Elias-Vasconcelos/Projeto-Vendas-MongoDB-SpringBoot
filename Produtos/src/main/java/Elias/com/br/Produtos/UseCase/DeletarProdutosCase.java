@@ -16,7 +16,7 @@ public class DeletarProdutosCase {
         this.produtosRepository = produtosRepository;
     }
 
-    public void deletarClientes(Produtos produto){
+    public void deletarProduto(Produtos produto){
         produtosRepository.delete(produto);
     }
 

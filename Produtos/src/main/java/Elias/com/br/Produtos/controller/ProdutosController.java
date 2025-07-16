@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Produtos")
@@ -37,22 +39,44 @@ public class ProdutosController {
     }
 
     @PutMapping
-    @Operation(summary = "Atualiza um cliente")
-    public Produtos alterarNomeProduto(String id, String nome){
+    @Operation(summary = "Atualiza um Produto")
+    public Produtos alterarNomeProduto(@RequestBody @Valid String id, String nome){
         return alterar.AlterarNomeProduto(id, nome);
     }
 
     @PutMapping
-    @Operation(summary = "Atualiza um cliente")
-    public Produtos alterarDescricaoProduto(String id, String Descricao){
+    @Operation(summary = "Atualiza um Produto")
+    public Produtos alterarDescricaoProduto(@RequestBody @Valid String id, String Descricao){
         return alterar.AlterarDescricaoProduto(id, Descricao);
     }
 
     @PutMapping
-    @Operation(summary = "Atualiza um cliente")
-    public Produtos alterarValorProduto(String id, BigDecimal valor){
+    @Operation(summary = "Atualiza um Produto")
+    public Produtos alterarValorProduto(@RequestBody @Valid String id, BigDecimal valor){
         return alterar.AlterarValorProduto(id, valor);
     }
 
+    @GetMapping(value = "/Codigo/{codigo}")
+    @Operation(summary = "Busca um Produto pelo codigo")
+    public Optional<Produtos> buscaProdutosPorCodigo(@PathVariable(value = "codigo", required = true) String codigo){
+        return buscar.buscarPorCodigo(codigo);
+    }
 
+    @GetMapping(value = "/ID/{id}")
+    @Operation(summary = "Busca um Produto pelo ID")
+    public Optional<Produtos> buscaProdutosPorID(@PathVariable(value = "ID", required = true) String id){
+        return buscar.buscarPorID(id);
+    }
+
+    @GetMapping
+    @Operation(summary = "Busca Todos os Produtos")
+    public List<Produtos> buscaTodosProdutos(){
+        return buscar.buscarTodos();
+    }
+
+    @DeleteMapping
+    @Operation(summary = "Remove um Cliente")
+    public void deletarProduto(Produtos produto){
+        deletar.deletarProduto(produto);
+    }
 }

@@ -19,7 +19,6 @@ class ClientesApplicationTests {
 
 	@Test
 	void contextLoads() {
-		// Verifica se o contexto carregou
 		assertThat(controller).isNotNull();
 		assertThat(clientesRepository).isNotNull();
 	}
