@@ -35,4 +35,24 @@ class ClientesApplicationTests {
 //
 //
 //	}
+
+
+//	@Test
+//	public void cadastroCliente(){
+//		Clientes cliente = Clientes.builder()
+//				.id("1")
+//				.nome("Elias Ferreira")
+//				.cpf("12345678900")
+//				.email("elias@email.com")
+//				.build();
+//
+//		controller.cadastrarCliente(cliente);
+//
+//		clientesRepository.findById();
+//
+//
+//	}
+
+
+
 }
