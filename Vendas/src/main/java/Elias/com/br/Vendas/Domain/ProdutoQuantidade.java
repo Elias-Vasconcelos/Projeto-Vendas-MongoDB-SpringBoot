@@ -23,5 +23,5 @@ public class ProdutoQuantidade {
     private BigDecimal valortotal;
 
     private Integer quantidade;
-
+    
 }
