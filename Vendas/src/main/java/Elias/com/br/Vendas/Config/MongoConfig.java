@@ -1,4 +1,4 @@
-package Elias.com.br.Vendas.Comf;
+package Elias.com.br.Vendas.Config;
 
 
 import org.springframework.context.annotation.Configuration;

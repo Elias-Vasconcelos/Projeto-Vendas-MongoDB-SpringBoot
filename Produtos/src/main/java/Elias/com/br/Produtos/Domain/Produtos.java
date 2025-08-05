@@ -39,13 +39,16 @@ public class Produtos {
 
     @NotNull
     @Size(min = 1, max = 50)
+    @Schema(description = "Nome do Produto")
     private String nome;
 
     @NotNull
     @Size(min = 1, max = 50)
+    @Schema(description = "Descricao breve do Produto")
     private String descricao;
 
     @NotNull
+    @Schema(description = "edscricao breve do Produto")
     private BigDecimal valor;
 
 }

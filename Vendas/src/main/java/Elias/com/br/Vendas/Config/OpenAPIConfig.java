@@ -1,4 +1,4 @@
-package Elias.com.br.Vendas.Comf;
+package Elias.com.br.Vendas.Config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
