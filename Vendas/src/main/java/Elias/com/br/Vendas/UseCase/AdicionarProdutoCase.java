@@ -9,23 +9,25 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class BuscaVendaCase {
+public class AdicionarProdutoCase {
 
   private IVendasRepository repository;
-
+  private BuscaVendaCase buscar;
 
     @Autowired
-    public BuscaVendaCase(IVendasRepository repository) {
+    public AdicionarProdutoCase(IVendasRepository repository,BuscaVendaCase buscar ) {
         this.repository = repository;
+        this.buscar = buscar;
     }
 
+    public void adicionarProduto(String produtoId){
 
-    public Vendas buscarPorCodigo(String codigo){
-        return repository.buscarPorCodigo(codigo);
+        Vendas venda = buscar.buscarPorId(produtoId);
+
+        venda.adicionarProduto(produtoId);
+
+        repository.save(venda);
     }
 
-    public Vendas buscarPorId(String id){
-        return Optional<Vendas> venda = repository.findById(id);
-    }
 
 }

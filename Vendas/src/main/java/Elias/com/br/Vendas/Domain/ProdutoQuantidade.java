@@ -20,7 +20,9 @@ public class ProdutoQuantidade {
     @NotNull
     private String produtoId;
 
-    private BigDecimal valortotal;
+    private BigDecimal valorTotal;
+
+    private BigDecimal valorUnitario;
 
     private Integer quantidade;
     

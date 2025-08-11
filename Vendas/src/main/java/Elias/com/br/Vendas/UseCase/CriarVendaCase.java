@@ -4,6 +4,8 @@ import Elias.com.br.Vendas.Client.ClientesClient;
 import Elias.com.br.Vendas.Domain.ClienteDTO;
 import Elias.com.br.Vendas.Domain.ProdutoDTO;
 import Elias.com.br.Vendas.Domain.Vendas;
+import Elias.com.br.Vendas.Repository.IVendasRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +15,14 @@ public class CriarVendaCase {
 
     private ClientesClient clienteClient;
 
+    private IVendasRepository repository;
+
+
+    @Autowired
+    public CriarVendaCase(ClientesClient clienteClient, IVendasRepository repository) {
+        this.clienteClient = clienteClient;
+        this.repository = repository;
+    }
 
     public Optional<Vendas> CriarVenda(String ClienteId){
 
@@ -23,6 +33,7 @@ public class CriarVendaCase {
 
              venda.setClienteId(ClienteId);
              venda.setStatusVenda(Vendas.status.Iniciada);
+
 
             return Optional.of(venda);
         }
