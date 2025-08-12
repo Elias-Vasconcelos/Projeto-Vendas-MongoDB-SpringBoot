@@ -25,5 +25,10 @@ public class ProdutoQuantidade {
     private BigDecimal valorUnitario;
 
     private Integer quantidade;
+
+    public  BigDecimal calcularValorTotal(){
+         setValorTotal(valorUnitario.multiply(BigDecimal.valueOf(quantidade)));
+         return valorTotal;
+    }
     
 }

@@ -41,15 +41,4 @@ public class Vendas {
     private BigDecimal valorTotal;
 
 
-    public void adicionarProduto(String produtoId){
-      //  produtoQuantidades.put()
-
-        if(produtoQuantidades.containsKey(produtoId)){
-            ProdutoQuantidade produto = produtoQuantidades.get(produtoId);
-            produto.setQuantidade(produto.getQuantidade() + 1);
-        }
-//        produtoQuantidades.containsKey(produtoId);
-//        produtoQuantidades.get(produtoId);
-    }
-
 }

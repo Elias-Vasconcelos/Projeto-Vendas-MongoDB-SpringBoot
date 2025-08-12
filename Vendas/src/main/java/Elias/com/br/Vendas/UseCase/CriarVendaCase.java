@@ -34,6 +34,7 @@ public class CriarVendaCase {
              venda.setClienteId(ClienteId);
              venda.setStatusVenda(Vendas.status.Iniciada);
 
+             repository.save(venda);
 
             return Optional.of(venda);
         }
