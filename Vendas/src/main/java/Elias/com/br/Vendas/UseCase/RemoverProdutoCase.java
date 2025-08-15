@@ -28,7 +28,8 @@ public class RemoverProdutoCase {
 
     public void RemoveProdutoVenda(String vendaId,String produtoId){
 
-        Vendas venda = buscar.buscarPorId(vendaId);
+        Vendas venda = buscar.buscarPorId(vendaId).orElseThrow(
+                () -> new RuntimeException("Venda não encontrada com o id: " + vendaId));;
 
 
         if(venda !=  null){

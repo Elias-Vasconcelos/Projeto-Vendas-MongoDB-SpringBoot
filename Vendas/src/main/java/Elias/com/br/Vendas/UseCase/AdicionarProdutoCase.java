@@ -30,7 +30,9 @@ public class AdicionarProdutoCase {
 
     public void adicionarProduto(String vendaId,String produtoId){
 
-        Vendas venda = buscar.buscarPorId(vendaId);
+        Vendas venda = buscar.buscarPorId(vendaId).orElseThrow(
+                () -> new RuntimeException("Venda não encontrada com o id: " + vendaId));
+
 
         if(venda != null ){
             if(venda.getStatusVenda() == Iniciada){

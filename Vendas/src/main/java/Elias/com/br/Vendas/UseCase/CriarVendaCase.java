@@ -2,7 +2,6 @@ package Elias.com.br.Vendas.UseCase;
 
 import Elias.com.br.Vendas.Client.ClientesClient;
 import Elias.com.br.Vendas.Domain.ClienteDTO;
-import Elias.com.br.Vendas.Domain.ProdutoDTO;
 import Elias.com.br.Vendas.Domain.Vendas;
 import Elias.com.br.Vendas.Repository.IVendasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class CriarVendaCase {
         this.repository = repository;
     }
 
-    public Optional<Vendas> CriarVenda(String ClienteId){
+    public void CriarVenda(String ClienteId){
 
         ClienteDTO cliente = clienteClient.buscarClientePorId(ClienteId);
 
@@ -36,7 +35,6 @@ public class CriarVendaCase {
 
              repository.save(venda);
 
-            return Optional.of(venda);
         }
 
         else{

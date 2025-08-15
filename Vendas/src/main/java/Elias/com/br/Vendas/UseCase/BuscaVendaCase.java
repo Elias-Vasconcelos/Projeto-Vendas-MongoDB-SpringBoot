@@ -24,8 +24,8 @@ public class BuscaVendaCase {
         return repository.buscarPorCodigo(codigo);
     }
 
-    public Vendas buscarPorId(String id){
-        return Optional<Vendas> venda = repository.findById(id);
+    public Optional<Vendas> buscarPorId(String id){
+        return repository.findById(id);
     }
 
 }
