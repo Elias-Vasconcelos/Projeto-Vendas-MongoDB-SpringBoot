@@ -37,12 +37,19 @@ public class RemoverProdutoCase {
 
                 if(produtos.containsKey(produtoId)){
                     ProdutoQuantidade produto = produtos.get(produtoId);
-                    if (produto.getQuantidade()  <= 2 ){
+
+                    if (produto.getQuantidade() > 1 ){
                         produto.setQuantidade(produto.getQuantidade() - 1);
+                        produto.calcularValorTotal();
                         venda.setProdutoQuantidades(produtos);
+                        venda.calculaValorTotal();
+                        repository.save(venda);
+
                     } else {
                         produtos.remove(produtoId);
                         venda.setProdutoQuantidades(produtos);
+                        venda.calculaValorTotal();
+                        repository.save(venda);
                     }
                 } else {
                     throw new RuntimeException("Produto não encontrada com o id:" + produtoId );
@@ -57,10 +64,6 @@ public class RemoverProdutoCase {
         } else {
             throw new RuntimeException("Venda não encontrada com o id:" + vendaId );
         }
-
-
-        repository.save(venda);
-
     }
 
 

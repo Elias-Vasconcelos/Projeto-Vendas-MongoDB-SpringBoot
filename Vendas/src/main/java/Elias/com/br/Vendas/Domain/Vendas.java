@@ -41,4 +41,17 @@ public class Vendas {
     private BigDecimal valorTotal;
 
 
+    public BigDecimal calculaValorTotal(){
+
+        valorTotal = BigDecimal.ZERO;
+
+        for(ProdutoQuantidade produto : produtoQuantidades.values()){
+
+            valorTotal =  valorTotal.add(produto.getValorTotal());
+        }
+
+        return valorTotal;
+    }
+
+
 }

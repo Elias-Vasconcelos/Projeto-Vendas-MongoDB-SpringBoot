@@ -20,9 +20,11 @@ public class AdicionarProdutoCase {
   private ProdutoClient produtoClient;
   private BuscaVendaCase buscar;
 
+
     @Autowired
-    public AdicionarProdutoCase(IVendasRepository repository,BuscaVendaCase buscar ) {
+    public AdicionarProdutoCase(IVendasRepository repository, ProdutoClient produtoClient, BuscaVendaCase buscar) {
         this.repository = repository;
+        this.produtoClient = produtoClient;
         this.buscar = buscar;
     }
 
@@ -30,8 +32,6 @@ public class AdicionarProdutoCase {
 
         Vendas venda = buscar.buscarPorId(vendaId);
 
-
-          //
         if(venda != null ){
             if(venda.getStatusVenda() == Iniciada){
                 Map<String, ProdutoQuantidade> produtos =  venda.getProdutoQuantidades();
@@ -39,6 +39,9 @@ public class AdicionarProdutoCase {
                 if(produtos.containsKey(produtoId)){
                     ProdutoQuantidade produto = produtos.get(produtoId);
                     produto.setQuantidade(produto.getQuantidade() + 1);
+                    produto.calcularValorTotal();
+                    venda.calculaValorTotal();
+                    repository.save(venda);
                 } else {
                     ProdutoDTO produtoDto = produtoClient.buscarProdutoPorId(produtoId);
 
@@ -48,7 +51,10 @@ public class AdicionarProdutoCase {
                         produto.setQuantidade(1);
                         produto.setValorUnitario(produtoDto.getValor());
                         produto.calcularValorTotal();
+                        produtos.put(produtoId, produto);
                         venda.setProdutoQuantidades(produtos);
+                        venda.calculaValorTotal();
+                        repository.save(venda);
                     } else {
                         throw new RuntimeException("Produto não encontrada com o id:" + produtoId );
                     }
@@ -59,8 +65,6 @@ public class AdicionarProdutoCase {
         } else {
             throw new RuntimeException("Venda não encontrada com o id:" + vendaId );
         }
-
-        repository.save(venda);
     }
 
 
