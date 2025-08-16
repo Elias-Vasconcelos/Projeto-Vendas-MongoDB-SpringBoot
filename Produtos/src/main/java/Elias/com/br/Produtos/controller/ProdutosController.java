@@ -75,8 +75,11 @@ public class ProdutosController {
     }
 
     @DeleteMapping
-    @Operation(summary = "Remove um Cliente")
+    @Operation(summary = "Remove um produto do banco de dados")
     public void deletarProduto(Produtos produto){
         deletar.deletarProduto(produto);
     }
+
+
+
 }

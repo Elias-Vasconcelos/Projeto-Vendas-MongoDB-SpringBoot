@@ -52,9 +52,20 @@
 
         @PutMapping
         @Operation(summary = "Remove um produto a uma venda")
-        public  void removerProdutoVenda(@RequestBody @Valid String vendaId, String produtoId){
+        public void removerProdutoVenda(@RequestBody @Valid String vendaId, String produtoId){
             removerProduto.RemoveProdutoVenda(vendaId, produtoId);
         }
 
+        @PutMapping
+        @Operation(summary = "Cancela uma venda")
+        public void cancelarVenda(@RequestBody @Valid String vendaId){
+            cancelarVenda.cancelarVenda(vendaId);
+        }
+
+        @PutMapping
+        @Operation(summary = "Cancela uma venda")
+        public void finalizarVenda(@RequestBody @Valid String vendaId){
+            concluirVenda.concluirVenda(vendaId);
+        }
 
     }
