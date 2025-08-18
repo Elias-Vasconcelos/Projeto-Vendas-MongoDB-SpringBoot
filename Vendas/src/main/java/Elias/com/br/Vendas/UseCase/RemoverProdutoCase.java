@@ -31,40 +31,35 @@ public class RemoverProdutoCase {
         Vendas venda = buscar.buscarPorId(vendaId).orElseThrow(
                 () -> new RuntimeException("Venda não encontrada com o id: " + vendaId));;
 
+        if(venda.getStatusVenda() == Iniciada){
+            Map<String, ProdutoQuantidade> produtos =  venda.getProdutoQuantidades();
 
-        if(venda !=  null){
-            if(venda.getStatusVenda() == Iniciada){
-                Map<String, ProdutoQuantidade> produtos =  venda.getProdutoQuantidades();
+            if(produtos.containsKey(produtoId)){
+                ProdutoQuantidade produto = produtos.get(produtoId);
 
-                if(produtos.containsKey(produtoId)){
-                    ProdutoQuantidade produto = produtos.get(produtoId);
+                if (produto.getQuantidade() > 1 ){
+                    produto.setQuantidade(produto.getQuantidade() - 1);
+                    produto.calcularValorTotal();
+                    venda.setProdutoQuantidades(produtos);
+                    venda.calculaValorTotal();
+                    repository.save(venda);
 
-                    if (produto.getQuantidade() > 1 ){
-                        produto.setQuantidade(produto.getQuantidade() - 1);
-                        produto.calcularValorTotal();
-                        venda.setProdutoQuantidades(produtos);
-                        venda.calculaValorTotal();
-                        repository.save(venda);
-
-                    } else {
-                        produtos.remove(produtoId);
-                        venda.setProdutoQuantidades(produtos);
-                        venda.calculaValorTotal();
-                        repository.save(venda);
-                    }
                 } else {
-                    throw new RuntimeException("Produto não encontrada com o id:" + produtoId );
+                    produtos.remove(produtoId);
+                    venda.setProdutoQuantidades(produtos);
+                    venda.calculaValorTotal();
+                    repository.save(venda);
                 }
-
-
-            }else {
-                throw new RuntimeException("a venda com ID:" + vendaId + " não pode ser alterada" );
+            } else {
+                throw new RuntimeException("Produto não encontrada com o id:" + produtoId );
             }
 
 
-        } else {
-            throw new RuntimeException("Venda não encontrada com o id:" + vendaId );
+        }else {
+            throw new RuntimeException("a venda com ID:" + vendaId + " não pode ser alterada" );
         }
+
+
     }
 
 

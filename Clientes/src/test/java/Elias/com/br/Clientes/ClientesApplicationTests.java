@@ -7,6 +7,8 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class ClientesApplicationTests {
@@ -19,7 +21,7 @@ class ClientesApplicationTests {
 		assertThat(controller).isNotNull();
 	}
 
-	static Clientes clienteTest = new Clientes();
+	public Clientes clienteTest = new Clientes();
 
 
 	@BeforeEach
@@ -74,22 +76,27 @@ class ClientesApplicationTests {
 	}
 
 
-//	@Test
-//	public void cadastroCliente(){
-//		Clientes cliente = Clientes.builder()
-//				.id("1")
-//				.nome("Elias Ferreira")
-//				.cpf("12345678900")
-//				.email("elias@email.com")
-//				.build();
-//
-//		controller.cadastrarCliente(cliente);
-//
-//		clientesRepository.findById();
-//
-//
-//	}
+	@Test
+	public void testDeletarCliente(){
 
+		Clientes cliente = new Clientes();
 
+		cliente.setNome("Elias");
+		cliente.setCpf(321654987);
+		cliente.setEmail("Test@gmail.com");
+		cliente.setEnd("Rua Test");
+		cliente.setNumero(999);
+		cliente.setEstado("São paulo");
+		cliente.setCidade("São paulo");
+		cliente.setTel(1199999999);
+		controller.cadastrarCliente(cliente);
+
+		controller.deletarCliente(cliente);
+
+		Optional<Clientes> cliente2 =  controller.buscarClientePorCpf(321654987);
+
+		assertThat(cliente2).isNull();
+
+	}
 
 }
