@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface IVendasRepository extends MongoRepository<Vendas, String> {
 
-    Vendas buscarPorCodigo(String codigo);
+    Optional<Vendas> buscarPorCodigo(String codigo);
 }

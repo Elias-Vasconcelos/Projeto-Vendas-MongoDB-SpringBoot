@@ -20,7 +20,7 @@ public class BuscaVendaCase {
     }
 
 
-    public Vendas buscarPorCodigo(String codigo){
+    public Optional<Vendas> buscarPorCodigo(String codigo){
         return repository.buscarPorCodigo(codigo);
     }
 

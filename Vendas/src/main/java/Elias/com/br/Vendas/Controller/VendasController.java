@@ -40,8 +40,14 @@
 
         @GetMapping(value = "/ID/{id}")
         @Operation(summary = "Busca uma Venda pelo ID")
-        public void buscarVenda( @PathVariable(value = "ID", required = true) String vendaId){
-            buscar.buscarPorId(vendaId);
+        public Optional<Vendas> buscarVenda( @PathVariable(value = "ID", required = true) String vendaId){
+              return buscar.buscarPorId(vendaId);
+        }
+
+        @GetMapping(value = "/Codigo/{codigo}")
+        @Operation(summary = "Busca uma Venda pelo Codigo")
+        public Optional<Vendas> buscarVendaPorCodigo( @PathVariable(value = "Codigo", required = true) String codigoVenda){
+            return buscar.buscarPorCodigo(codigoVenda);
         }
 
         @PutMapping

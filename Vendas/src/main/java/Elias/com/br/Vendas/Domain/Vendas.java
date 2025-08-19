@@ -4,13 +4,12 @@ package Elias.com.br.Vendas.Domain;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.UUID;
 
 @Document(collection = "Vendas")
 @Getter
@@ -34,6 +33,9 @@ public class Vendas {
      private status statusVenda;
 
     @NotNull
+    private String codigo;
+
+    @NotNull
     private String clienteId;
 
     private Map<String,ProdutoQuantidade> produtoQuantidades;
@@ -52,6 +54,14 @@ public class Vendas {
 
         return valorTotal;
     }
+
+    public void gerarCodigo() {
+        if (this.codigo == null) {
+            this.codigo = UUID.randomUUID().toString();
+        }
+    }
+
+
 
 
 }
